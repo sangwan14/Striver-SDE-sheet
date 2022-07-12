@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        int n = nums.size();
+        
+        for(int i=n/2-1;i>=0;i--){//build heap
+            heapify(nums,n,i);
+        }
+        while(k--){//partial heap sort
+            swap(nums[0],nums[n-1]);
+            n--;
+            heapify(nums,n,0);//heapify the lower part
+        }
+        return nums[n];//last swapped value is the kth largest element
+        //TC: log(N)+log(N-1)+...+log(N-k) = N*log(N) - (N-k)*log(N-k)
+    }
+    void heapify(vector<int> &nums, int n, int i){
+        int j = (n>>1)-1;
+        while(i<=j){
+            int largest = i;
+            int l = 2*i+1;
+            int r = 2*i+2;
+            
+            if(nums[i]<nums[l]){
+                i = l;
+            }
+            if(r<n and nums[i]<nums[r]){
+                i = r;
+            }
+            if(largest!=i){
+                swap(nums[i],nums[largest]);
+            }
+            else return;
+        }
+    }
+};
