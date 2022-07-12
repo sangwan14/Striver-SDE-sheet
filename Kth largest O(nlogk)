@@ -8,5 +8,5 @@ public:
         }
         return pq.top();
     }
-    //Time Complexity : O(nlogk)
+    //TC: 2*(n-k)logk + k*logk = O(nlogk)
 };
