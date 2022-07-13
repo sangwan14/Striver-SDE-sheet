@@ -1,0 +1,83 @@
+class Node{
+public:
+    int val;
+    int key;
+    Node *prev;
+    Node *next;
+    Node(int key, int value){
+        this->key = key;
+        this->val = value;
+    }
+};
+
+class LRUCache {
+public:
+    
+    
+    Node *left = new Node(0,0);
+    Node *right = new Node(0,0);
+    
+    unordered_map<int,Node*> cache;
+    
+    int capacity;
+    
+    LRUCache(int capacity) {
+        this->capacity = capacity;
+        left->next = right;
+        right->prev = left;
+    }
+    
+    //insert node on right
+    void insert(Node *node){
+        right->prev->next = node;
+        node->prev = right->prev;
+        right->prev = node;
+        node-> next = right;
+    }
+    
+    //remove node from list
+    void remove(Node *node){
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+    }
+    
+    int get(int key) {
+        auto itr = cache.find(key);
+        if(itr!=cache.end()){
+            Node *node = itr->second;
+            remove(node);
+            insert(node);
+            return node->val;
+        }
+        return -1;
+    }
+    
+    void put(int key, int value) {
+        auto itr = cache.find(key);
+        if(itr!=cache.end()){
+            Node *node = itr->second;
+            node->val = value;
+            remove(node);
+            insert(node);
+            return;
+        }
+        else{
+            Node *node = new Node(key,value);
+            cache[key] = node;
+            insert(node);
+        }
+        if(cache.size()>capacity){
+            Node *lru = left->next;
+            cache.erase(lru->key);
+            remove(lru);
+            delete lru;
+        }
+    }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
