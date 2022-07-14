@@ -1,0 +1,32 @@
+int celebrity(vector<vector<int> >& M, int n) 
+    {
+        // code here 
+       stack<int> s;
+       //push all indices in the stack
+       for(int i=0;i<n;i++) s.push(i);
+       
+       //eliminate people one by one
+       while(s.size()>=2){
+           int i = s.top();
+           s.pop();
+           int j = s.top();
+           s.pop();
+           if(M[i][j]==0) s.push(i);// i doesn't know j, therefore j cannot be a celebrity.
+           else s.push(j);//i knows i, therefore i cannot be a celebrity.
+       }
+       
+       //we are left with one guy who is a potential celebrity.
+       int pot = s.top();//potential celebrity
+       s.pop();
+       
+       //confirm that our potential candidate is a celebrity or not
+       for(int i=0;i<n;i++){
+           if(i!=pot){
+               if(M[i][pot]==0 or M[pot][i]==1) return -1;
+           }
+       }
+       return pot;
+    }
+    
+    //Time Complexity - O(N)
+    //Space Complexity - O(N)
