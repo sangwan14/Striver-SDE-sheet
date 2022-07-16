@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> v;
+        TreeNode* curr = root;
+        while(curr){
+           
+            if(curr->left){
+                
+                TreeNode* predecessor = find(curr->left, curr);
+                
+                
+                if(predecessor->right){
+                    predecessor->right = NULL;
+                    curr = curr->right;
+                   
+                }
+                
+                
+                else{
+                    predecessor->right = curr;
+                    v.push_back(curr->val);
+                    curr = curr->left;
+                }
+            }
+            else{
+                v.push_back(curr->val);
+                curr = curr->right;
+                
+            }
+        }
+        return v;
+    }
+    
+    TreeNode* find(TreeNode* node, TreeNode* curr){
+        
+         while(node->right and node->right!=curr){
+            node = node->right;
+        }
+        return node;
+    }
+    
+};
