@@ -31,11 +31,4 @@ public:
         return v;
     }
     
-    //return predecessor to the curr node
-    TreeNode* find(TreeNode* node, TreeNode* curr){
-        while(node->right and node->right!=curr){
-            node = node->right;
-        }
-        return node;
-    }
 };
