@@ -15,9 +15,8 @@ public:
         queue<pair<TreeNode*,pair<int,int>>> q;
         q.push({root,{0,0}});
         map<int,multiset<pair<int,int>>> mp;
+        
         while(q.size()){
-            int a = q.size();
-            for(int i=0;i<a;i++){
                 TreeNode *curr = q.front().first;
                 int h = q.front().second.first;
                 int v = q.front().second.second;
@@ -27,7 +26,7 @@ public:
                 if(curr->left) q.push({curr->left,{h-1,v+1}});
                 if(curr->right) q.push({curr->right,{h+1,v+1}});          
             }
-        }
+        
         
             vector<vector<int>> res;
             for(auto &it_map:mp){
