@@ -17,7 +17,8 @@ public:
         return !left ? right : !right ? left : root; 
         /* equivalent to
         if(!left and !right) return NULL;
-        else if(left and right) return root;
+        if(left and right) return root;
         return !left ? right : left;
+        */
     }
 };
