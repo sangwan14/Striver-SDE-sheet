@@ -31,7 +31,7 @@ public:
                 if(curr->left) q.push(curr->left);
                 if(curr->right) q.push(curr->right);
              }
-            reverse = reverse ? false : true; 
+            reverse = !reverse;
             res.push_back(row);
         }
         
