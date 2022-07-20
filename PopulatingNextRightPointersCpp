@@ -21,6 +21,7 @@ public:
     }
 };
 
+Time Complexity : O(N), Space Complexity : O(N)
 */
 
 /*  BFS - left to right 
@@ -56,9 +57,10 @@ public:
     }
 };
 
+Time Complexity : O(N), Space Complexity : O(N)
 */
 
-/* DFS
+/*  DFS
 
 class Solution {
 public:
@@ -75,4 +77,27 @@ public:
     }
 };
 
+Time Complexity : O(N), Space Complexity : O(N)
 */
+
+/*  BFS - Optimized
+
+class Solution {
+public:
+    Node* prev = NULL;
+    Node* connect(Node* root) {
+        if(!root) return NULL;
+        Node* head = root;
+        while(root->left){
+            for(auto cur = root;cur;cur = cur->next){
+                cur->left->next = cur->right;
+                if(cur->next) cur->right->next = cur->next->left;
+            }
+            root = root->left;
+        }
+        return head;
+    }
+};
+
+Time Complexity : O(N), Space Complexity : O(1)
+/*
