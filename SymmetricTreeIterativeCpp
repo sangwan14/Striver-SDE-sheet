@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        stack<tuple<TreeNode*,TreeNode*,int>> st;
+        TreeNode *l = root->left, *r = root->right;
+        st.push({l,r,1});
+        while(!st.empty()){
+            l = get<0>(st.top()), r = get<1>(st.top());
+            int num = get<2>(st.top());
+            if(!l or !r){
+                if(l!=r) return false;
+                st.pop();
+                continue;
+            } 
+            if(l->val!=r->val) return false;
+            if(num==1){
+                get<2>(st.top())++;
+                st.push({l->left,r->right,1});
+            }
+            else if(num==2){
+                st.pop();
+                st.push({l->right,r->left,1});
+            }
+            
+        }
+        return true;
+    }
+    
+};
