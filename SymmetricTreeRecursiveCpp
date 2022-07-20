@@ -1,0 +1,23 @@
+bool isSymmetric(TreeNode* root) {
+        return helper(root->left,root->right);
+    }
+bool helper(TreeNode* l,TreeNode* r){
+    if(!l or !r) return l==r ;//if l and r both null then return true, otherwise false
+
+    if(l->val!=r->val) return false; // l and r are at same distance from the root node,
+    //return false if they are not equal
+
+    if(not helper(l->left,r->right)) return false;
+    if(not helper(l->right,r->left)) return false;
+
+    return true;//return true otherwise
+}
+
+/* One-liner
+bool isSymmetric(TreeNode* root) {
+        return helper(root->left,root->right);
+    }
+bool helper(TreeNode* l,TreeNode* r){
+    return !l or !r ? l==r : l->val==r->val and helper(l->left,r->right) and helper(l->right,r->left);
+}
+*/
