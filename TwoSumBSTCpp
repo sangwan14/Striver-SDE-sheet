@@ -57,4 +57,21 @@ public:
 
 */
 
-/* 
+/* DFS and binary search 
+
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int& k) {
+        return dfs(root,root,k);
+    }
+    bool dfs(TreeNode*& root, TreeNode* curr, int& k){
+        if(!curr) return false;
+        return searchBST(root,curr,k-curr->val) || dfs(root,curr->left,k) || dfs(root,curr->right,k);
+    }
+    bool searchBST(TreeNode* root, TreeNode*& curr, const int& val) {
+        if(!root) return false;
+        return root->val==val && curr!=root || root->val>val && searchBST(root->left,curr,val) || root->val<val && searchBST(root->right,curr,val);
+    }
+};
+
+*/
