@@ -1,0 +1,15 @@
+int floorInBST(TreeNode<int> * root, int X)
+{
+    // Write your code here.
+    int pre;
+    while(root){
+        if(X>=root->val) {
+            pre = root->val;
+            root = root->right;
+        }
+        else{
+            root = root->left;
+        }
+    }
+    return pre;
+}
