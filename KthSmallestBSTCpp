@@ -1,0 +1,52 @@
+/* DFS - inorder traversal
+
+int kthSmallest(TreeNode* root, int& k) {
+      if(!root) return -1;
+
+      int x = kthSmallest(root->left,k);
+      if(x!=-1) return x;
+
+      k--;
+      if(!k) return root->val;
+
+      x = kthSmallest(root->right,k);
+      if(x!=-1) return x;
+
+      return -1;
+}
+
+*/
+
+/* DFS - inorder traversal short
+
+int kthSmallest(TreeNode* root, int& k) {
+    if (root) {
+        int x = kthSmallest(root->left, k);
+        return !k ? x : !--k ? root->val : kthSmallest(root->right, k);
+    }
+}
+
+/* Iterative Solution using stack
+
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int& k) {
+        stack<TreeNode*> st;
+        st.push(root);
+        while(!st.empty()){
+           while(root){
+               st.push(root);
+               root = root->left;
+           }
+            root = st.top();
+            st.pop();
+            if(!--k) return root->val;
+            else{
+                root = root->right;
+            }
+        }
+        return -1;
+    }
+};
+
+*/
