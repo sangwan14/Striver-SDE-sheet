@@ -1,0 +1,60 @@
+/* Classic two sum array approach - TC : O(N*H), SC : O(1) 
+
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int k) {
+        TreeNode *start = root;
+        while(start->left){
+            start = start->left;
+        }
+        
+        TreeNode *end = root;
+        while(end->right){
+            end = end->right;
+        }
+        
+        while(start!=end){
+            if(start->val + end->val < k) {
+                successor(root,start,start->val);
+            }
+            else if(start->val + end->val >k){
+                predecessor(root,end,end->val);                
+            }
+            else return true;
+        }
+        
+        return false;
+    } 
+    void predecessor(TreeNode* root, TreeNode*& pre, int key) {
+        while(root!=0)
+        {
+            if(key<=root->val)
+            {
+                root=root->left;
+            }
+            else
+            {
+                pre=root;
+                root=root->right;
+            }
+        }
+    }
+    void successor(TreeNode* root, TreeNode*& suc, int key){
+        while(root!=0)
+        {
+            if(key>= root->val)
+            {
+                root=root->right;
+            }
+            else
+            {
+                suc=root;
+                root=root->left;
+            }
+        }
+    }
+};
+
+*/
+
+/* 
