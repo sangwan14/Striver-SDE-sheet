@@ -5,7 +5,7 @@ public:
     TreeNode* prev = NULL;
      void flatten(TreeNode* root){
         if(!root) return;
-        last = root;
+        prev = root;
         flatten(root->left);
         TreeNode* temp = prev; 
         flatten(root->right);
