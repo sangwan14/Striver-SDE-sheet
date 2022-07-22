@@ -1,0 +1,36 @@
+class NodeValue{
+    public:
+        int maxNode, minNode, maxSum;
+        
+        NodeValue(int minNode, int maxNode, int maxSum){
+            this->maxNode = maxNode;
+            this->minNode = minNode;
+            this->maxSum = maxSum;
+        }
+};
+
+class Solution{
+public:
+    int MAX_SUM;
+    int maxSumBST(TreeNode *root)
+    {
+        MAX_SUM = 0;
+    	auto node = dfs(root);
+    	if(node.minNode == INT_MAX) return 0;
+        else return MAX_SUM;
+    }
+    NodeValue dfs(TreeNode *root){
+        if(!root){
+            return NodeValue(INT_MAX, INT_MIN, 0);
+        }
+        auto left = dfs(root->left);
+        auto right = dfs(root->right);
+        
+        if(root->val>left.maxNode and root->val<right.minNode){
+            MAX_SUM = max(left.maxSum + right.maxSum + root->val, MAX_SUM);
+            return NodeValue(min(root->val,left.minNode), max(root->val,right.maxNode), 
+            left.maxSum + right.maxSum + root->val);
+        }
+        return NodeValue(INT_MIN, INT_MAX, max(left.maxSum, right.maxSum));
+    }
+};
