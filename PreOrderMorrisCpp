@@ -7,7 +7,7 @@ public:
            
             if(curr->left){
                 
-                TreeNode* predecessor = find(curr->left, curr);
+                TreeNode* predecessor = findPredecessor(curr->left, curr);
                 
                 
                 if(predecessor->right){
@@ -32,7 +32,7 @@ public:
         return v;
     }
     
-    TreeNode* find(TreeNode* node, TreeNode* curr){
+    TreeNode* findPredecessor(TreeNode* node, TreeNode* curr){
         
          while(node->right and node->right!=curr){
             node = node->right;
