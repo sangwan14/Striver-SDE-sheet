@@ -16,7 +16,7 @@ public:
         TreeNode* curr = root;
         while(curr){
             if(curr->left){
-                TreeNode* predecessor = find(curr->left, curr);
+                TreeNode* predecessor = findPredecessor(curr->left, curr);
                 
                 //if thread already present, print, remove the thread & move to right subtree
                 if(predecessor->right){
@@ -40,7 +40,7 @@ public:
     }
     
     //return predecessor to the curr node
-    TreeNode* find(TreeNode* node, TreeNode* curr){
+    TreeNode* findPredecessor(TreeNode* node, TreeNode* curr){
         while(node->right and node->right!=curr){
             node = node->right;
         }
