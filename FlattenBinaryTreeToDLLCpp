@@ -1,0 +1,17 @@
+BinaryTreeNode<int>* prevv = NULL;
+
+void flatten(BinaryTreeNode<int>* root){
+    if (root == NULL) return;
+    flatten(root->right);
+    root->right = prevv;
+    if(prevv) prevv->left = root;
+    prevv = root;
+    flatten(root->left); 
+}
+
+BinaryTreeNode<int>* BTtoDLL(BinaryTreeNode<int>* root) {
+    flatten(root);
+    root = prevv;
+    prevv = NULL;
+    return root;
+}
