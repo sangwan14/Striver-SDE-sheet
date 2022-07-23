@@ -19,23 +19,19 @@ public:
 
 */
 
-/* Post order traversal
+/* Reverse Post order traversal
   
-  class Solution {
+ class Solution {
 public:
     TreeNode* prev = NULL;
-     void flatten(TreeNode* root){
-        if(!root) return;
-        last = root;
-        flatten(root->left);
-        TreeNode* temp = prev; 
+    void flatten(TreeNode* root) {
+        if (root == NULL) return;
         flatten(root->right);
-        if(root->left){
-            temp->right = root->right;
-            root->right = root->left;
-            root->left = NULL;
-        }
-    }  
+        flatten(root->left);
+        root->right = prev;
+        root->left = NULL;
+        prev = root;
+    }
 };
 
 */
