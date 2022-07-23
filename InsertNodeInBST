@@ -1,0 +1,13 @@
+/* Time Complexity : O(logN), Space Complexity : O(logN)
+
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode*& root, int& val) {
+        if(!root) {root = new TreeNode(val); return root;}
+        if(val<root->val) insertIntoBST(root->left, val);
+        else insertIntoBST(root->right,val);
+        return root;
+    }
+};
+
+*/
