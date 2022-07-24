@@ -1,4 +1,4 @@
-/* Detect BFS
+/* BFS Solution
 
 class Solution {
   public:
@@ -33,7 +33,7 @@ class Solution {
 
 */
 
-/* DFS
+/* DFS Solution
 
 class Solution {
   public:
