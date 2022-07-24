@@ -15,11 +15,11 @@ class Solution {
 					q.pop();
 
 					for(auto it : adj[node]){
-						if(vis[it] and it!=parent) return true;
 						if(!vis[it]){
 							q.push({it,node});
 							vis[it] = 1;
 						}
+						else if(it!=parent) return true;
 					}
 				}
 			}
