@@ -40,17 +40,16 @@ class Solution
 
 //DFS
 
-class Solution2
-{
-	public:
+class Solution2{
+public:
   void dfs(int i, vector<int> &vis, stack<int> &st, vector<int> adj[]){
-        vis[i] = 1;
-        for(auto it: adj[i]){
-            if(!vis[it]){
-                dfs(it, vis, st, adj);
-            }
-        }
-        st.push(i);
+	vis[i] = 1;
+	for(auto it: adj[i]){
+	    if(!vis[it]){
+		dfs(it, vis, st, adj);
+	    }
+	}
+	st.push(i);
     }
 
   vector<int> topoSort(int V, vector<int> adj[]) 
