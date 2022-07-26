@@ -78,24 +78,7 @@ public:
 
 //Kahn's Algorithm (BFS)
 
-class Solution3 {
-public:
-    
-    bool dfs(int node, vector<int> adj[], vector<int>& vis){
-        vis[node] = 1;
-        for(auto &it:adj[node]){
-            if(vis[it]==0){
-                if(dfs(it,adj,vis)) return true;
-            }
-            else if(vis[it]==1){
-                return true;
-            }
-        }
-        vis[node]=2;
-        return false;
-    }
-
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         vector<int> adj[numCourses];
         for(int i=0;i<prerequisites.size();i++){
             int u = prerequisites[i][0];
@@ -135,4 +118,3 @@ public:
         
         return cnt == numCourses;
     }
-};
